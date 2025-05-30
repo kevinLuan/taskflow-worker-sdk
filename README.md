@@ -9,8 +9,6 @@ taskflow-worker-sdk
   <a href="https://central.sonatype.com/artifact/cn.taskflow/taskflow-worker-sdk?smo=true"><img src="https://img.shields.io/maven-metadata/v.svg?label=Maven%20Central&metadataUrl=https%3A%2F%2Frepo1.maven.org%2Fmaven2%2Fcn%2Ftaskflow%2Fjsv%2Fjson-schema-validator%2Fmaven-metadata.xml" alt="License"></a>
 </div>
 
-[English](./README-en.md) | 简体中文
-
 ## 简介
 taskflow-worker 集成 SDK
 
