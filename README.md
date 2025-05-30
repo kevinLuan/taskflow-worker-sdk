@@ -7,6 +7,7 @@ taskflow-worker-sdk
   <a href="https://www.apache.org/licenses/LICENSE-2.0"><img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="License"></a>
   <a href="https://javadoc.io/doc/cn.taskflow/taskflow-worker-sdk/latest/index.html" target="_blank"><img src="https://javadoc.io/badge/cn.taskflow/taskflow-worker-sdk/0.0.1.svg" /></a>
 </div>
+
 ## 简介
 taskflow-worker 集成 SDK
 
@@ -23,19 +24,34 @@ taskflow-worker 集成 SDK
 ```
 
 
-### 代码生成
+### 示例代码
 
-#### JSON 数据
-```json
-    /*开发者自有的私钥*/
-    String devPrivateKey = "...";
-    /*平台公钥*/
-    String platformPublicKey = "...";
-    String basePath = "http://localhost:8083/api";
-    String keyId = "197203879aa";
-    String keySecret = "916f3ba4d7d044cdaf4a596fa882b533";
-    TaskflowClient taskflowClient = new TaskflowClient(basePath, keyId, keySecret, devPrivateKey, platformPublicKey);
-  
+```java
+/*开发者自有的私钥*/
+String devPrivateKey = "...";
+/*平台公钥*/
+String platformPublicKey = "...";
+String basePath = "http://localhost:8083/api";
+String keyId = "197203879aa";
+String keySecret = "916f3ba4d7d044cdaf4a596fa882b533";
+TaskflowClient taskflowClient = new TaskflowClient(basePath, keyId, keySecret, devPrivateKey, platformPublicKey);
+//-----------------------
+SbyTransferTaskReq req = new SbyTransferTaskReq();
+req.setAppName("sby_test");
+req.setWorkflowName("sby_transfer_workflow");
+req.setWorkflowVersion(1);
+req.setBizNo("order-" + System.currentTimeMillis());
+SbyTransferData data = new SbyTransferData();
+data.setPayeeName("余海霞");
+data.setMobile("18914346422");
+data.setIdCard("11011619940303150X");
+data.setPayeeAcc("6213905012014648566");
+data.setPaymentType(0);//支付类型:
+data.setTransAmount(10000L);//转账金额(单位：分)
+data.setRemark("test_sby");
+req.setData(data);
+SbyTransferResp resp = taskflowClient.getPayClient().sbyTransfer(req);
+System.out.println("交易流水号: " + resp.getTradeId());
 ```
 
 
