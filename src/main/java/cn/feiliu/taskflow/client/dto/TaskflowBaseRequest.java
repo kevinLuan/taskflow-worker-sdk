@@ -18,13 +18,16 @@ import lombok.Data;
 
 import java.util.Objects;
 
+/**
+ * taskflow 基础请求类
+ */
 @Data
-public class FeiliuRouteRequest {
+public class TaskflowBaseRequest {
     private String reqData;
     private Long   timestamp;
     private String sign;
 
-    public FeiliuRouteRequest(String reqData, Long timestamp) {
+    public TaskflowBaseRequest(String reqData, Long timestamp) {
         this.reqData = reqData;
         this.timestamp = timestamp;
     }

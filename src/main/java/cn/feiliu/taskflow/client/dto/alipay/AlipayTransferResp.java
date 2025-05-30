@@ -12,20 +12,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.feiliu.taskflow.client.dto;
+package cn.feiliu.taskflow.client.dto.alipay;
 
 import lombok.Data;
 
 /**
- * 授权响应数据
+ * 支付宝转账响应
  *
  * @author kevin.luan
- * @since 2025-05-22
+ * @since 2025-05-30
  */
 @Data
-public class AuthResponse {
-    private String  accessToken;
-    private String  type;
-    /*过期时间 单位:秒*/
-    private Integer expire;     // Expiration time
+public class AlipayTransferResp {
+    /*交易流水号*/
+    private String tradeId;
 }

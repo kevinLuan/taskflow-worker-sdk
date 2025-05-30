@@ -17,7 +17,7 @@ package cn.feiliu.taskflow.client.dto.sby;
 import lombok.Data;
 
 /**
- * 转账数据
+ * 身边云转账数据
  *
  * @author kevin.luan
  * @since 2025-05-28

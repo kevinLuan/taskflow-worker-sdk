@@ -19,8 +19,8 @@ import cn.feiliu.common.api.crypto.RSAUtil;
 import cn.feiliu.common.api.model.resp.DataResult;
 import cn.feiliu.taskflow.client.dto.ApiException;
 import cn.feiliu.taskflow.client.dto.AuthResponse;
-import cn.feiliu.taskflow.client.dto.FeiliuRouteRequest;
-import cn.feiliu.taskflow.client.dto.FeiliuRouteResult;
+import cn.feiliu.taskflow.client.dto.TaskflowBaseRequest;
+import cn.feiliu.taskflow.client.dto.TaskflowBaseResponse;
 import cn.feiliu.taskflow.client.utils.TaskflowDataResult;
 import cn.feiliu.taskflow.common.encoder.EncoderFactory;
 import cn.feiliu.taskflow.common.encoder.JsonEncoder;
@@ -47,19 +47,17 @@ public class TaskflowClient {
     private String             keySecret;
     /*开发者私钥*/
     private String             devPrivateKey;
-    private String             devPublicKey;
     /*平台公钥*/
     private String             platformPublicKey;
     private final OkHttpClient client      = new OkHttpClient();
     private final JsonEncoder  jsonEncoder = EncoderFactory.getJsonEncoder();
 
-    public TaskflowClient(String basePath, String keyId, String keySecret, String devPrivateKey, String devPublicKey,
+    public TaskflowClient(String basePath, String keyId, String keySecret, String devPrivateKey,
                           String platformPublicKey) {
         this.basePath = basePath;
         this.keyId = keyId;
         this.keySecret = keySecret;
         this.devPrivateKey = devPrivateKey;
-        this.devPublicKey = devPublicKey;
         this.platformPublicKey = platformPublicKey;
     }
 
@@ -141,18 +139,18 @@ public class TaskflowClient {
      * @return
      */
     @SneakyThrows
-    public FeiliuRouteRequest createRequest(Object req) {
+    public TaskflowBaseRequest createRequest(Object req) {
         String jsonData = jsonEncoder.encode(req);
         String cipherData = CryptoUtil.encryptAsBase64(jsonData, keySecret);
         Long timestamp = System.currentTimeMillis();
-        FeiliuRouteRequest request = new FeiliuRouteRequest(cipherData, timestamp);
+        TaskflowBaseRequest request = new TaskflowBaseRequest(cipherData, timestamp);
         String content = request.getSignStr(keySecret);
         String sign = RSAUtil.sign(content, devPrivateKey);
         request.setSign(sign);
         return request;
     }
 
-    public void verifySign(FeiliuRouteResult resp) {
+    public void verifySign(TaskflowBaseResponse resp) {
         try {
             RSAUtil.verify(resp.getSignStr(keySecret), resp.getSign(), platformPublicKey);
         } catch (Exception e) {
@@ -161,7 +159,7 @@ public class TaskflowClient {
         }
     }
 
-    public String getDecryptData(FeiliuRouteResult resp) {
+    public String getDecryptData(TaskflowBaseResponse resp) {
         try {
             return CryptoUtil.decryptToString(resp.getData(), keySecret);
         } catch (Exception e) {
@@ -170,11 +168,11 @@ public class TaskflowClient {
         }
     }
 
-    public <T> T execute(String method, FeiliuRouteRequest request, Type respType) throws IOException {
+    public <T> T execute(String method, TaskflowBaseRequest request, Type respType) throws IOException {
         ResponseBody body = post("route/v1.0/" + method, request);
-        Type type = TaskflowDataResult.makeType(FeiliuRouteResult.class);
+        Type type = TaskflowDataResult.makeType(TaskflowBaseResponse.class);
         String rawJson = body.string();
-        DataResult<FeiliuRouteResult> dataResult = jsonEncoder.decode(rawJson, type);
+        DataResult<TaskflowBaseResponse> dataResult = jsonEncoder.decode(rawJson, type);
         if (dataResult.hasError()) {
             throw new ApiException(dataResult.getCode(), dataResult.getMsg());
         }

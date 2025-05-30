@@ -15,13 +15,15 @@
 package cn.feiliu.taskflow.client;
 
 import cn.feiliu.taskflow.client.dto.*;
+import cn.feiliu.taskflow.client.dto.alipay.AlipayTransferResp;
+import cn.feiliu.taskflow.client.dto.alipay.AlipayTransferTask;
 import cn.feiliu.taskflow.client.dto.alipay.TransferTaskRequest;
 import cn.feiliu.taskflow.client.dto.sby.SbyTransferData;
+import cn.feiliu.taskflow.client.dto.sby.SbyTransferResp;
 import cn.feiliu.taskflow.client.dto.sby.SbyTransferTaskReq;
-import cn.feiliu.taskflow.common.encoder.EncoderFactory;
-import cn.feiliu.taskflow.common.encoder.JsonEncoder;
-
-import java.util.concurrent.ThreadLocalRandom;
+import cn.feiliu.taskflow.client.enums.AlipayCertType;
+import cn.feiliu.taskflow.client.enums.AlipayIdentityType;
+import org.junit.Test;
 
 /**
  * @author kevin.luan
@@ -35,32 +37,32 @@ public class TestClient {
     /*平台公钥*/
     static String         platformPublicKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDJK2UKjAwKi9LcC5bmyL/Noehyq7rrXUqhH67icikhCTCqKu1OogC9qXbm03W1f7RYxaR+/Enu8Hat3zQfBKSeQtQspWz4iTHUuxDEPQV55chbwpWhABNdlkvyljlbRtYmvzG9duNQQOJaexthC1aLzc8shjrujjvyLVZ1LACmHwIDAQAB";
     static TaskflowClient taskflowClient    = new TaskflowClient("http://localhost:8083/api", "197203879aa",
-                                                "916f3ba4d7d044cdaf4a596fa882b533", devPrivateKey, devPublicKey,
-                                                platformPublicKey);
+                                                "916f3ba4d7d044cdaf4a596fa882b533", devPrivateKey, platformPublicKey);
 
-    public static void alipayTransferTask() throws ApiException {
-        JsonEncoder jsonEncoder = EncoderFactory.getJsonEncoder();
-        TransferTaskRequest req = jsonEncoder.convert(
-            "{\n" + "            \"appName\": \"alipay\",\n"
-                    + "                \"workflowName\": \"alipay_workflow\",\n"
-                    + "                \"workflowVersion\": 1,\n" + "                \"data\": {\n"
-                    + "            \"certType\":\"IDENTITY_CARD\",\n" + "                    \"bizNo\": \"103\",\n"
-                    + "                    \"transAmount\": 1,\n" + "                    \"transferTime\": \"100\",\n"
-                    + "                    \"orderTitle\": \"测试转账\",\n"
-                    + "                    \"certNo\": \"053070194504089221\",\n"
-                    + "                    \"realName\": \"cayjgd1666\",\n"
-                    + "                    \"identityType\":\"ALIPAY_LOGON_ID\",\n"
-                    + "                    \"identity\": \"cayjgd1666@sandbox.com\",\n"
-                    + "                    \"remark\": \"20250516代发\"\n" + "        }\n" + "        }",
-            TransferTaskRequest.class);
-        try {
-            System.out.println("交易流水号:" + taskflowClient.getPayClient().alipayTransfer(req));
-        } catch (ApiException e) {
-            e.printStackTrace();
-        }
+    @Test
+    public void alipayTransferTask() throws ApiException {
+        TransferTaskRequest request = new TransferTaskRequest();
+        request.setAppName("alipay");
+        request.setWorkflowName("alipay_workflow");
+        request.setWorkflowVersion(1);
+        AlipayTransferTask task = new AlipayTransferTask();
+        task.setCertType(AlipayCertType.IDENTITY_CARD);
+        task.setBizNo("order-" + System.currentTimeMillis());
+        task.setTransAmount(1);
+        task.setTransferTime(System.currentTimeMillis());
+        task.setOrderTitle("测试转账");
+        task.setCertNo("053070194504089221");
+        task.setRealName("cayjgd1666");
+        task.setIdentityType(AlipayIdentityType.ALIPAY_LOGON_ID);
+        task.setIdentity("cayjgd1666@sandbox.com");
+        task.setRemark("20250516代发");
+        request.setData(task);
+        AlipayTransferResp resp = taskflowClient.getPayClient().alipayTransfer(request);
+        System.out.println("交易流水号:" + resp.getTradeId());
     }
 
-    public static void main(String[] args) throws Exception {
+    @Test
+    public void test() throws Exception {
         SbyTransferTaskReq req = new SbyTransferTaskReq();
         req.setAppName("sby_test");
         req.setWorkflowName("sby_transfer_workflow");
@@ -71,10 +73,11 @@ public class TestClient {
         data.setMobile("18914346422");
         data.setIdCard("11011619940303150X");
         data.setPayeeAcc("6213905012014648566");
-        data.setPaymentType(0);
-        data.setTransAmount(ThreadLocalRandom.current().nextLong(1, 10000));
+        data.setPaymentType(0);//支付类型:
+        data.setTransAmount(10000L);//转账金额(单位：分)
         data.setRemark("test_sby");
         req.setData(data);
-        System.out.println(taskflowClient.getPayClient().sbyTransfer(req).getTradeId());
+        SbyTransferResp resp = taskflowClient.getPayClient().sbyTransfer(req);
+        System.out.println("交易流水号: " + resp.getTradeId());
     }
 }

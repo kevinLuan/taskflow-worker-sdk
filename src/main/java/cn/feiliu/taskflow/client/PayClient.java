@@ -15,22 +15,21 @@
 package cn.feiliu.taskflow.client;
 
 import cn.feiliu.taskflow.client.dto.*;
+import cn.feiliu.taskflow.client.dto.alipay.AlipayTransferResp;
 import cn.feiliu.taskflow.client.dto.alipay.TransferTaskRequest;
 import cn.feiliu.taskflow.client.dto.sby.SbyTransferResp;
 import cn.feiliu.taskflow.client.dto.sby.SbyTransferTaskReq;
-import cn.feiliu.taskflow.common.encoder.EncoderFactory;
-import cn.feiliu.taskflow.common.encoder.JsonEncoder;
 
 import java.io.IOException;
-import java.util.Map;
 
 /**
+ * 支付客户端
+ *
  * @author kevin.luan
  * @since 2025-05-22
  */
 public class PayClient {
     private final TaskflowClient client;
-    private final JsonEncoder    jsonEncoder = EncoderFactory.getJsonEncoder();
 
     public PayClient(TaskflowClient client) {
         this.client = client;
@@ -39,11 +38,10 @@ public class PayClient {
     /**
      * 支付宝转账操作
      */
-    public String alipayTransfer(TransferTaskRequest req) throws ApiException {
+    public AlipayTransferResp alipayTransfer(TransferTaskRequest req) throws ApiException {
         try {
-            FeiliuRouteRequest request = client.createRequest(req);
-            Map<String, String> map = client.execute("alipay.transfer", request, Map.class);
-            return map.get("tradeId");
+            TaskflowBaseRequest request = client.createRequest(req);
+            return client.execute("alipay.transfer", request, AlipayTransferResp.class);
         } catch (IOException e) {
             throw new ApiException(-1, e.getMessage());
         }
@@ -58,7 +56,7 @@ public class PayClient {
      */
     public SbyTransferResp sbyTransfer(SbyTransferTaskReq req) throws ApiException {
         try {
-            FeiliuRouteRequest request = client.createRequest(req);
+            TaskflowBaseRequest request = client.createRequest(req);
             return client.execute("sby.transfer", request, SbyTransferResp.class);
         } catch (IOException e) {
             throw new ApiException(-1, e.getMessage());

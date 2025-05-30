@@ -18,8 +18,11 @@ import lombok.Data;
 
 import java.util.Objects;
 
+/**
+ * Taskflow 基础响应数据类
+ */
 @Data
-public class FeiliuRouteResult {
+public class TaskflowBaseResponse {
     /*请求DTO原始数据*/
     private String data;
     /*当前系统时间戳*/
