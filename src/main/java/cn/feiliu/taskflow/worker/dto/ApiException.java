@@ -12,17 +12,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.feiliu.taskflow.client.enums;
+package cn.feiliu.taskflow.worker.dto;
 
 /**
  * @author kevin.luan
- * @since 2025-05-20
+ * @since 2025-05-22
  */
-public enum AlipayCertType {
-    IDENTITY_CARD("身份证"), PASSPORT("护照");
-    private String desc;
+public class ApiException extends RuntimeException {
+    private int code;
 
-    AlipayCertType(String desc) {
-        this.desc = desc;
+    public ApiException(String message) {
+        super(message);
+        this.code = -1;
+    }
+
+    public ApiException(String message, Exception ex) {
+        super(message, ex);
+        this.code = -1;
+    }
+
+    public ApiException(int code, String message) {
+        super(message);
+        this.code = code;
+    }
+
+    public int getCode() {
+        return code;
     }
 }

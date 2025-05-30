@@ -12,17 +12,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.feiliu.taskflow.client;
+package cn.feiliu.taskflow.worker;
 
-import cn.feiliu.taskflow.client.dto.*;
-import cn.feiliu.taskflow.client.dto.alipay.AlipayTransferResp;
-import cn.feiliu.taskflow.client.dto.alipay.AlipayTransferTask;
-import cn.feiliu.taskflow.client.dto.alipay.TransferTaskRequest;
-import cn.feiliu.taskflow.client.dto.sby.SbyTransferData;
-import cn.feiliu.taskflow.client.dto.sby.SbyTransferResp;
-import cn.feiliu.taskflow.client.dto.sby.SbyTransferTaskReq;
-import cn.feiliu.taskflow.client.enums.AlipayCertType;
-import cn.feiliu.taskflow.client.enums.AlipayIdentityType;
+import cn.feiliu.taskflow.worker.dto.*;
+import cn.feiliu.taskflow.worker.dto.alipay.AlipayTransferResp;
+import cn.feiliu.taskflow.worker.dto.alipay.AlipayTransferTask;
+import cn.feiliu.taskflow.worker.dto.alipay.TransferTaskRequest;
+import cn.feiliu.taskflow.worker.dto.sby.SbyTransferData;
+import cn.feiliu.taskflow.worker.dto.sby.SbyTransferResp;
+import cn.feiliu.taskflow.worker.dto.sby.SbyTransferTaskReq;
+import cn.feiliu.taskflow.worker.enums.AlipayCertType;
+import cn.feiliu.taskflow.worker.enums.AlipayIdentityType;
 import org.junit.Test;
 
 /**

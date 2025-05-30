@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.feiliu.taskflow.client.enums;
+package cn.feiliu.taskflow.worker.enums;
 
 /**
  * 支付宝身份类型

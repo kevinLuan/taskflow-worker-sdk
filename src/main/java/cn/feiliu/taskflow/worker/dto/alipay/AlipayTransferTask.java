@@ -12,10 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.feiliu.taskflow.client.dto.alipay;
+package cn.feiliu.taskflow.worker.dto.alipay;
 
-import cn.feiliu.taskflow.client.enums.AlipayCertType;
-import cn.feiliu.taskflow.client.enums.AlipayIdentityType;
+import cn.feiliu.taskflow.worker.enums.AlipayCertType;
+import cn.feiliu.taskflow.worker.enums.AlipayIdentityType;
 import lombok.Data;
 
 /**

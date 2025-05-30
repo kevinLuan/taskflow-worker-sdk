@@ -12,16 +12,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.feiliu.taskflow.client;
+package cn.feiliu.taskflow.worker;
 
 import cn.feiliu.common.api.crypto.CryptoUtil;
 import cn.feiliu.common.api.crypto.RSAUtil;
 import cn.feiliu.common.api.model.resp.DataResult;
-import cn.feiliu.taskflow.client.dto.ApiException;
-import cn.feiliu.taskflow.client.dto.AuthResponse;
-import cn.feiliu.taskflow.client.dto.TaskflowBaseRequest;
-import cn.feiliu.taskflow.client.dto.TaskflowBaseResponse;
-import cn.feiliu.taskflow.client.utils.TaskflowDataResult;
+import cn.feiliu.taskflow.worker.dto.ApiException;
+import cn.feiliu.taskflow.worker.dto.AuthResponse;
+import cn.feiliu.taskflow.worker.dto.TaskflowBaseRequest;
+import cn.feiliu.taskflow.worker.dto.TaskflowBaseResponse;
+import cn.feiliu.taskflow.worker.utils.TaskflowDataResult;
 import cn.feiliu.taskflow.common.encoder.EncoderFactory;
 import cn.feiliu.taskflow.common.encoder.JsonEncoder;
 import lombok.SneakyThrows;

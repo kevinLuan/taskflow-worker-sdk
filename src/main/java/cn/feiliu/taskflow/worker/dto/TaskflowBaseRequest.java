@@ -12,29 +12,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.feiliu.taskflow.client.dto;
+package cn.feiliu.taskflow.worker.dto;
 
 import lombok.Data;
 
 import java.util.Objects;
 
 /**
- * Taskflow 基础响应数据类
+ * taskflow 基础请求类
  */
 @Data
-public class TaskflowBaseResponse {
-    /*请求DTO原始数据*/
-    private String data;
-    /*当前系统时间戳*/
+public class TaskflowBaseRequest {
+    private String reqData;
     private Long   timestamp;
-    /*接口参数签名*/
     private String sign;
 
-    public String getSignStr(String secret) {
-        Objects.requireNonNull(data, "data is null");
-        Objects.requireNonNull(timestamp, "secret is null");
-        Objects.requireNonNull(secret, "secret is null");
-        return data + "|" + timestamp + "|" + secret;
+    public TaskflowBaseRequest(String reqData, Long timestamp) {
+        this.reqData = reqData;
+        this.timestamp = timestamp;
     }
 
+    public String getSignStr(String keySecret) {
+        Objects.requireNonNull(keySecret, "keySecret is null");
+        Objects.requireNonNull(reqData, "reqData is null");
+        Objects.requireNonNull(timestamp, "timestamp is null");
+        return reqData + "|" + timestamp + "|" + keySecret;
+    }
 }

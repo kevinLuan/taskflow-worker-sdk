@@ -12,18 +12,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.feiliu.taskflow.client.dto.alipay;
+package cn.feiliu.taskflow.worker.dto.sby;
 
 import lombok.Data;
 
 /**
- * 支付宝转账响应
- *
  * @author kevin.luan
- * @since 2025-05-30
+ * @since 2025-05-28
  */
 @Data
-public class AlipayTransferResp {
-    /*交易流水号*/
-    private String tradeId;
+public class SbyTransferTaskReq {
+    /*集成应用名称*/
+    private String          appName;
+    /*工作流名称*/
+    private String          workflowName;
+    /*工作流版本号*/
+    private Integer         workflowVersion;
+
+    /**
+     * 业务单号
+     */
+    private String          bizNo;
+
+    /**
+     * 转账数据
+     */
+    private SbyTransferData data;
 }

@@ -12,31 +12,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.feiliu.taskflow.client.dto;
+package cn.feiliu.taskflow.worker.dto.sby;
+
+import lombok.Data;
 
 /**
  * @author kevin.luan
- * @since 2025-05-22
+ * @since 2025-05-29
  */
-public class ApiException extends RuntimeException {
-    private int code;
-
-    public ApiException(String message) {
-        super(message);
-        this.code = -1;
-    }
-
-    public ApiException(String message, Exception ex) {
-        super(message, ex);
-        this.code = -1;
-    }
-
-    public ApiException(int code, String message) {
-        super(message);
-        this.code = code;
-    }
-
-    public int getCode() {
-        return code;
-    }
+@Data
+public class SbyTransferResp {
+    /*交易流水号*/
+    private String tradeId;
 }

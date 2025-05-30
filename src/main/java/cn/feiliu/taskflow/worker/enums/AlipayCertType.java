@@ -12,22 +12,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.feiliu.taskflow.client.dto.alipay;
-
-import lombok.Data;
+package cn.feiliu.taskflow.worker.enums;
 
 /**
  * @author kevin.luan
- * @since 2025-05-16
+ * @since 2025-05-20
  */
-@Data
-public class TransferTaskRequest {
-    /*集成应用名称*/
-    private String             appName;
-    /*工作流名称*/
-    private String             workflowName;
-    /*工作流版本号*/
-    private Integer            workflowVersion;
-    /*转账数据*/
-    private AlipayTransferTask data;
+public enum AlipayCertType {
+    IDENTITY_CARD("身份证"), PASSPORT("护照");
+    private String desc;
+
+    AlipayCertType(String desc) {
+        this.desc = desc;
+    }
 }

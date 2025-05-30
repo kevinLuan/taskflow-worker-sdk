@@ -12,10 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.feiliu.taskflow.client.utils;
+package cn.feiliu.taskflow.worker.utils;
 
 import cn.feiliu.common.api.model.resp.DataResult;
-import cn.feiliu.taskflow.client.dto.ApiException;
+import cn.feiliu.taskflow.worker.dto.ApiException;
 import com.google.inject.util.Types;
 
 import java.lang.reflect.Type;
