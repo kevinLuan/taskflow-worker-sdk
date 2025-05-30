@@ -1,0 +1,11 @@
+.classpath
+.idea/
+.project
+.settings/
+*.iml
+target/
+.DS_Store
+.vscode/
+.flattened-pom.xml
+*/.flattened-pom.xml
+/grpc-proto/src/main/java/*
