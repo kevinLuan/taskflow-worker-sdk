@@ -6,7 +6,6 @@ taskflow-worker-sdk
   <a href="javascript:void(0);" target="_blank"><img src="https://img.shields.io/badge/docs-latest-brightgreen" /></a>
   <a href="https://www.apache.org/licenses/LICENSE-2.0"><img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="License"></a>
   <a href="https://javadoc.io/doc/cn.taskflow/taskflow-worker-sdk/latest/index.html" target="_blank"><img src="https://javadoc.io/badge/cn.taskflow/taskflow-worker-sdk/0.0.1.svg" /></a>
-  <a href="https://central.sonatype.com/artifact/cn.taskflow/taskflow-worker-sdk?smo=true"><img src="https://img.shields.io/maven-metadata/taskflow-worker-sdk.svg?label=Maven%20Central&metadataUrl=https%3A%2F%2Frepo1.maven.org%2Fmaven2%2Fcn%2Ftaskflow%2Ftaskflow-worker-sdk%2Fmaven-metadata.xml" alt="License"></a>
 </div>
 ## 简介
 taskflow-worker 集成 SDK
