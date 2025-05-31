@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>cn.taskflow</groupId>
     <artifactId>taskflow-worker-sdk</artifactId>
-    <version>0.0.3</version>
+    <version>0.0.4</version>
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
@@ -13,7 +13,7 @@
         <ok-http.version>3.9.0</ok-http.version>
         <lombok.version>1.18.24</lombok.version>
         <feiliu-common.version>0.1.2</feiliu-common.version>
-        <taskflow.version>1.0.0-SNAPSHOT</taskflow.version>
+        <jackson.version>2.15.3</jackson.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <main.user.dir>${user.dir}</main.user.dir>
         <!--suppress UnresolvedMavenProperty -->
@@ -27,19 +27,9 @@
     <url>https://github.com/kevinLuan/taskflow-worker-sdk</url>
     <dependencies>
         <dependency>
-            <groupId>com.google.inject</groupId>
-            <artifactId>guice</artifactId>
-            <version>4.1.0</version>
-        </dependency>
-        <dependency>
             <groupId>cn.taskflow</groupId>
             <artifactId>feiliu-common-api</artifactId>
             <version>${feiliu-common.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>cn.taskflow</groupId>
-            <artifactId>taskflow-common</artifactId>
-            <version>${taskflow.version}</version>
         </dependency>
         <!-- okhttp -->
         <dependency>
@@ -52,27 +42,6 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.12</version>
-        </dependency>
-        <!-- jackson -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.jaxrs</groupId>
-            <artifactId>jackson-jaxrs-json-provider</artifactId>
-            <version>2.13.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.datatype</groupId>
-            <artifactId>jackson-datatype-jsr310</artifactId>
-            <version>2.13.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>2.13.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-            <version>2.13.0</version>
         </dependency>
         <!--单元测试-->
         <dependency>

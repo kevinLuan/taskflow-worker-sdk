@@ -36,7 +36,7 @@ public class TestClient {
     static String         devPrivateKey     = "MIICdQIBADANBgkqhkiG9w0BAQEFAASCAl8wggJbAgEAAoGBAIWNQmQ3R2vU7gKetC2cCRps6gbTAKHg1PurBgFRTGw9AiT1EYD6QeJ4+dUiDv0lu9OivqpJTdpbX2OkyAb90sr7gsswMH87VW2C3IaojeoA6SR8jeewvkMY+aXRlJ4EuYaEg2p2jweZ74WVAXlBfG0Touziw0J5bUND8a7ShVwVAgMBAAECgYBFxLcDXbGNDq7MZZZhIVvMF0vnBsIUzzzUwNKhS5RuEy0Um4ZqZ9KVenehtWo5K0ZFWIbctPDb+tIJXyM0K9O7f0WLwYxcMflx910LRsXOyRJqZ2s959Aup2r7A0FyrK0wYAGsjIWVOUNzNdmWyYlJLRAve62avtI+vozRkyAkQQJBAMQEbBWVwyrO8cnK6wLfR8hWtE7iKor1OkN77ma1N71aLz0na4tcyox92xyfWDrvk4jUsOR/dOD5xHfqHNeBToUCQQCua2yApWoDhHy/rbqia+Mf8LkocmaLkq+iAz4iUSrCNdtGHiWepnW9L2nfJxdN3jhE9wqTqv54rDilhljFrrRRAkEAkusBnBgZJV/g6C/Yf9mc8vLRyIJKAscVOXmNUZwoQBt1Zq/CMr2E71JxxX1FYz8oZJmOUGWb0/hBIuPtZDV+BQJAGjelgJTcoZi5k6pOgnmLE1MA0faYOWScJ9Mq9MeUkMq9ogWIDBfjXMOSu2tJ0neTp7ImkdnDFGp2vVK7Z0OCcQI/F+nAbf5swfafEhBfJRr34/N1Q70k/e/av/VX/AVbPRI/MiY7+GdVabdzvzPlFyf9ev1iwThp5erhAxkgNoMd";
     /*平台公钥*/
     static String         platformPublicKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDJK2UKjAwKi9LcC5bmyL/Noehyq7rrXUqhH67icikhCTCqKu1OogC9qXbm03W1f7RYxaR+/Enu8Hat3zQfBKSeQtQspWz4iTHUuxDEPQV55chbwpWhABNdlkvyljlbRtYmvzG9duNQQOJaexthC1aLzc8shjrujjvyLVZ1LACmHwIDAQAB";
-    static TaskflowClient taskflowClient    = new TaskflowClient("http://localhost:8083/api", "197203879aa",
+    static TaskflowClient taskflowClient    = new TaskflowClient("http://101.126.143.97:8083/api", "197203879aa",
                                                 "916f3ba4d7d044cdaf4a596fa882b533", devPrivateKey, platformPublicKey);
 
     @Test
@@ -61,8 +61,12 @@ public class TestClient {
         System.out.println("交易流水号:" + resp.getTradeId());
     }
 
+    /**
+     * 测试身边云转账
+     * @throws Exception
+     */
     @Test
-    public void test() throws Exception {
+    public void testSby() throws Exception {
         SbyTransferTaskReq req = new SbyTransferTaskReq();
         req.setAppName("sby_test");
         req.setWorkflowName("sby_transfer_workflow");
