@@ -5,14 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>cn.taskflow</groupId>
     <artifactId>taskflow-worker-sdk</artifactId>
-    <version>0.0.4</version>
+    <version>0.0.5</version>
     <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-        <java.version>11</java.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <java.version>1.8</java.version>
         <ok-http.version>3.9.0</ok-http.version>
         <lombok.version>1.18.24</lombok.version>
-        <feiliu-common.version>0.1.2</feiliu-common.version>
+        <feiliu-common.version>0.1.6</feiliu-common.version>
         <jackson.version>2.15.3</jackson.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <main.user.dir>${user.dir}</main.user.dir>
