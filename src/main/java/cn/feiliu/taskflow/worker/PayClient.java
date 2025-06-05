@@ -15,10 +15,10 @@
 package cn.feiliu.taskflow.worker;
 
 import cn.feiliu.taskflow.worker.dto.*;
-import cn.feiliu.taskflow.worker.dto.alipay.AlipayTransferResp;
-import cn.feiliu.taskflow.worker.dto.alipay.TransferTaskRequest;
-import cn.feiliu.taskflow.worker.dto.sby.SbyTransferResp;
-import cn.feiliu.taskflow.worker.dto.sby.SbyTransferTaskReq;
+import cn.feiliu.taskflow.worker.dto.req.SbyTransferTaskReq;
+import cn.feiliu.taskflow.worker.dto.req.YjyTransferTaskReq;
+import cn.feiliu.taskflow.worker.dto.resp.SbyTransferResp;
+import cn.feiliu.taskflow.worker.dto.resp.YjyTransferResp;
 
 import java.io.IOException;
 
@@ -36,18 +36,6 @@ public class PayClient {
     }
 
     /**
-     * 支付宝转账操作
-     */
-    public AlipayTransferResp alipayTransfer(TransferTaskRequest req) throws ApiException {
-        try {
-            TaskflowBaseRequest request = client.createRequest(req);
-            return client.execute("alipay.transfer", request, AlipayTransferResp.class);
-        } catch (IOException e) {
-            throw new ApiException(-1, e.getMessage());
-        }
-    }
-
-    /**
      * 身边云灵活用工平台转账
      *
      * @param req
@@ -58,6 +46,15 @@ public class PayClient {
         try {
             TaskflowBaseRequest request = client.createRequest(req);
             return client.execute("sby.transfer", request, SbyTransferResp.class);
+        } catch (IOException e) {
+            throw new ApiException(-1, e.getMessage());
+        }
+    }
+
+    public YjyTransferResp yjyTransfer(YjyTransferTaskReq req) throws ApiException {
+        try {
+            TaskflowBaseRequest request = client.createRequest(req);
+            return client.execute("yjy.transfer", request, YjyTransferResp.class);
         } catch (IOException e) {
             throw new ApiException(-1, e.getMessage());
         }

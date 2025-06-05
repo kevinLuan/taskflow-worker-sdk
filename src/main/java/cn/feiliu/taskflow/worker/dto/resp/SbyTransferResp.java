@@ -12,18 +12,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.feiliu.taskflow.worker.dto.alipay;
+package cn.feiliu.taskflow.worker.dto.resp;
 
 import lombok.Data;
 
 /**
- * 支付宝转账响应
- *
  * @author kevin.luan
- * @since 2025-05-30
+ * @since 2025-05-29
  */
 @Data
-public class AlipayTransferResp {
+public class SbyTransferResp {
     /*交易流水号*/
     private String tradeId;
 }

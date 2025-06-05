@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.feiliu.taskflow.worker.dto.sby;
+package cn.feiliu.taskflow.worker.dto.req;
 
 import lombok.Data;
 
@@ -23,19 +23,38 @@ import lombok.Data;
 @Data
 public class SbyTransferTaskReq {
     /*集成应用名称*/
-    private String          appName;
+    private String       appName;
     /*工作流名称*/
-    private String          workflowName;
+    private String       workflowName;
     /*工作流版本号*/
-    private Integer         workflowVersion;
+    private Integer      workflowVersion;
 
     /**
      * 业务单号
      */
-    private String          bizNo;
+    private String       bizNo;
 
     /**
      * 转账数据
      */
-    private SbyTransferData data;
+    private TransferData data;
+
+    @Data
+    public static class TransferData {
+        /*收款人姓名*/
+        private String  payeeName;
+        /*收款人手机号*/
+        private String  mobile;
+        /*转账金额（单位：分）*/
+        private Long    transAmount;
+        /*身份证号*/
+        private String  idCard;
+        /*分款方式 0：银行卡，1：支付宝，2：微信*/
+        private Integer paymentType;
+        /*收款人账号(根据付款方式:银行卡号/支付宝(账号、ID)/微信 openid)*/
+        private String  payeeAcc;
+        /*用户备注*/
+        private String  remark;
+    }
+
 }
