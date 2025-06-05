@@ -22,7 +22,7 @@ import org.junit.Test;
  * @author kevin.luan
  * @since 2025-05-22
  */
-public class TestClient {
+public class SbyTransferTests {
     /*开发自由的公钥*/
     static String         devPublicKey      = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCFjUJkN0dr1O4CnrQtnAkabOoG0wCh4NT7qwYBUUxsPQIk9RGA+kHiePnVIg79JbvTor6qSU3aW19jpMgG/dLK+4LLMDB/O1VtgtyGqI3qAOkkfI3nsL5DGPml0ZSeBLmGhINqdo8Hme+FlQF5QXxtE6Ls4sNCeW1DQ/Gu0oVcFQIDAQAB";
     /*开发者自有的私钥*/
