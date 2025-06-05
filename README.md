@@ -44,5 +44,5 @@ TaskflowClient taskflowClient = new TaskflowClient(basePath, keyId, keySecret, d
 
 ### 文档
 [飞流云官方文档](https://docs.taskflow.cn/) <br/>
-[身边云文档](https://docs.taskflow.cn/guide/integration/yjy/) <br/>
+[身边云文档](https://docs.taskflow.cn/guide/integration/sby/) <br/>
 [youjiayun文档](https://docs.taskflow.cn/guide/integration/yjy/)
